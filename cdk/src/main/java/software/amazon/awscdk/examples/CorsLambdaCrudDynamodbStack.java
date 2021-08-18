@@ -12,6 +12,7 @@ import software.amazon.awscdk.services.dynamodb.TableProps;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.FunctionProps;
+import software.amazon.awscdk.services.lambda.LambdaInsightsVersion;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.lambda.Tracing;
 import software.amazon.awscdk.services.lambda.VersionOptions;
@@ -165,6 +166,7 @@ class CorsLambdaCrudDynamodbStack extends Stack {
 				.description("Built on " + java.time.LocalDateTime.now())
 				.currentVersionOptions(VersionOptions.builder().build())
 				.tracing(Tracing.ACTIVE)
+				.insightsVersion(LambdaInsightsVersion.VERSION_1_0_98_0)
 				.build();
 	}
 
