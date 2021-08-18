@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "items07D08F4B": {
+    "jvmitems29A1232E": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
         "KeySchema": [
@@ -19,15 +19,15 @@
           "ReadCapacityUnits": 5,
           "WriteCapacityUnits": 5
         },
-        "TableName": "items"
+        "TableName": "jvm-items"
       },
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete",
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/items/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-items/Resource"
       }
     },
-    "getOneItemFunctionServiceRoleCFD54796": {
+    "jvmgetOneItemFunctionServiceRole52215D99": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -58,10 +58,10 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/getOneItemFunction/ServiceRole/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-getOneItemFunction/ServiceRole/Resource"
       }
     },
-    "getOneItemFunctionServiceRoleDefaultPolicy6B743AA8": {
+    "jvmgetOneItemFunctionServiceRoleDefaultPolicy9CCBD521": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -92,7 +92,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "items07D08F4B",
+                    "jvmitems29A1232E",
                     "Arn"
                   ]
                 },
@@ -104,23 +104,23 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "getOneItemFunctionServiceRoleDefaultPolicy6B743AA8",
+        "PolicyName": "jvmgetOneItemFunctionServiceRoleDefaultPolicy9CCBD521",
         "Roles": [
           {
-            "Ref": "getOneItemFunctionServiceRoleCFD54796"
+            "Ref": "jvmgetOneItemFunctionServiceRole52215D99"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/getOneItemFunction/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-getOneItemFunction/ServiceRole/DefaultPolicy/Resource"
       }
     },
-    "getOneItemFunctionE3257B22": {
+    "jvmgetOneItemFunction6F309A36": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364cS3Bucket31260450"
+            "Ref": "AssetParameters8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21S3Bucket99647083"
           },
           "S3Key": {
             "Fn::Join": [
@@ -133,7 +133,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364cS3VersionKey6E77E647"
+                          "Ref": "AssetParameters8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21S3VersionKeyAC1EE540"
                         }
                       ]
                     }
@@ -146,7 +146,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364cS3VersionKey6E77E647"
+                          "Ref": "AssetParameters8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21S3VersionKeyAC1EE540"
                         }
                       ]
                     }
@@ -158,15 +158,15 @@
         },
         "Role": {
           "Fn::GetAtt": [
-            "getOneItemFunctionServiceRoleCFD54796",
+            "jvmgetOneItemFunctionServiceRole52215D99",
             "Arn"
           ]
         },
-        "Description": "Built on 2021-08-18",
+        "Description": "Built on 2021-08-18T20:52:22.905941100",
         "Environment": {
           "Variables": {
             "TABLE_NAME": {
-              "Ref": "items07D08F4B"
+              "Ref": "jvmitems29A1232E"
             },
             "PRIMARY_KEY": "itemId",
             "DISABLE_SIGNAL_HANDLERS": "true"
@@ -181,16 +181,16 @@
         }
       },
       "DependsOn": [
-        "getOneItemFunctionServiceRoleDefaultPolicy6B743AA8",
-        "getOneItemFunctionServiceRoleCFD54796"
+        "jvmgetOneItemFunctionServiceRoleDefaultPolicy9CCBD521",
+        "jvmgetOneItemFunctionServiceRole52215D99"
       ],
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/getOneItemFunction/Resource",
-        "aws:asset:path": "asset.15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364c.zip",
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-getOneItemFunction/Resource",
+        "aws:asset:path": "asset.8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21.zip",
         "aws:asset:property": "Code"
       }
     },
-    "getAllItemsFunctionServiceRoleCC084440": {
+    "jvmgetAllItemsFunctionServiceRole6E1BF147": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -221,10 +221,10 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/getAllItemsFunction/ServiceRole/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-getAllItemsFunction/ServiceRole/Resource"
       }
     },
-    "getAllItemsFunctionServiceRoleDefaultPolicyF069C759": {
+    "jvmgetAllItemsFunctionServiceRoleDefaultPolicy02E77F32": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -255,7 +255,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "items07D08F4B",
+                    "jvmitems29A1232E",
                     "Arn"
                   ]
                 },
@@ -267,23 +267,23 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "getAllItemsFunctionServiceRoleDefaultPolicyF069C759",
+        "PolicyName": "jvmgetAllItemsFunctionServiceRoleDefaultPolicy02E77F32",
         "Roles": [
           {
-            "Ref": "getAllItemsFunctionServiceRoleCC084440"
+            "Ref": "jvmgetAllItemsFunctionServiceRole6E1BF147"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/getAllItemsFunction/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-getAllItemsFunction/ServiceRole/DefaultPolicy/Resource"
       }
     },
-    "getAllItemsFunction0B7A913E": {
+    "jvmgetAllItemsFunction42B2C091": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416S3BucketD536487B"
+            "Ref": "AssetParameters67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9dS3Bucket0A60305A"
           },
           "S3Key": {
             "Fn::Join": [
@@ -296,7 +296,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416S3VersionKeyB23E2CA4"
+                          "Ref": "AssetParameters67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9dS3VersionKey2C7A217F"
                         }
                       ]
                     }
@@ -309,7 +309,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416S3VersionKeyB23E2CA4"
+                          "Ref": "AssetParameters67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9dS3VersionKey2C7A217F"
                         }
                       ]
                     }
@@ -321,15 +321,15 @@
         },
         "Role": {
           "Fn::GetAtt": [
-            "getAllItemsFunctionServiceRoleCC084440",
+            "jvmgetAllItemsFunctionServiceRole6E1BF147",
             "Arn"
           ]
         },
-        "Description": "Built on 2021-08-18",
+        "Description": "Built on 2021-08-18T20:52:23.050947200",
         "Environment": {
           "Variables": {
             "TABLE_NAME": {
-              "Ref": "items07D08F4B"
+              "Ref": "jvmitems29A1232E"
             },
             "PRIMARY_KEY": "itemId",
             "DISABLE_SIGNAL_HANDLERS": "true"
@@ -344,16 +344,16 @@
         }
       },
       "DependsOn": [
-        "getAllItemsFunctionServiceRoleDefaultPolicyF069C759",
-        "getAllItemsFunctionServiceRoleCC084440"
+        "jvmgetAllItemsFunctionServiceRoleDefaultPolicy02E77F32",
+        "jvmgetAllItemsFunctionServiceRole6E1BF147"
       ],
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/getAllItemsFunction/Resource",
-        "aws:asset:path": "asset.508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416.zip",
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-getAllItemsFunction/Resource",
+        "aws:asset:path": "asset.67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9d.zip",
         "aws:asset:property": "Code"
       }
     },
-    "createItemFunctionServiceRole1BBF2178": {
+    "jvmcreateItemFunctionServiceRole37D61C70": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -384,10 +384,10 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/createItemFunction/ServiceRole/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-createItemFunction/ServiceRole/Resource"
       }
     },
-    "createItemFunctionServiceRoleDefaultPolicy8FAF1611": {
+    "jvmcreateItemFunctionServiceRoleDefaultPolicyE6FC021D": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -418,7 +418,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "items07D08F4B",
+                    "jvmitems29A1232E",
                     "Arn"
                   ]
                 },
@@ -430,23 +430,23 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "createItemFunctionServiceRoleDefaultPolicy8FAF1611",
+        "PolicyName": "jvmcreateItemFunctionServiceRoleDefaultPolicyE6FC021D",
         "Roles": [
           {
-            "Ref": "createItemFunctionServiceRole1BBF2178"
+            "Ref": "jvmcreateItemFunctionServiceRole37D61C70"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/createItemFunction/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-createItemFunction/ServiceRole/DefaultPolicy/Resource"
       }
     },
-    "createItemFunction8D47E48A": {
+    "jvmcreateItemFunction67ACB2B7": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31S3Bucket491B0457"
+            "Ref": "AssetParametersfec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01dS3BucketA9C87710"
           },
           "S3Key": {
             "Fn::Join": [
@@ -459,7 +459,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31S3VersionKey81B9E3E9"
+                          "Ref": "AssetParametersfec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01dS3VersionKey0E41AE99"
                         }
                       ]
                     }
@@ -472,7 +472,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31S3VersionKey81B9E3E9"
+                          "Ref": "AssetParametersfec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01dS3VersionKey0E41AE99"
                         }
                       ]
                     }
@@ -484,15 +484,15 @@
         },
         "Role": {
           "Fn::GetAtt": [
-            "createItemFunctionServiceRole1BBF2178",
+            "jvmcreateItemFunctionServiceRole37D61C70",
             "Arn"
           ]
         },
-        "Description": "Built on 2021-08-18",
+        "Description": "Built on 2021-08-18T20:52:23.140941500",
         "Environment": {
           "Variables": {
             "TABLE_NAME": {
-              "Ref": "items07D08F4B"
+              "Ref": "jvmitems29A1232E"
             },
             "PRIMARY_KEY": "itemId",
             "DISABLE_SIGNAL_HANDLERS": "true"
@@ -507,16 +507,16 @@
         }
       },
       "DependsOn": [
-        "createItemFunctionServiceRoleDefaultPolicy8FAF1611",
-        "createItemFunctionServiceRole1BBF2178"
+        "jvmcreateItemFunctionServiceRoleDefaultPolicyE6FC021D",
+        "jvmcreateItemFunctionServiceRole37D61C70"
       ],
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/createItemFunction/Resource",
-        "aws:asset:path": "asset.34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31.zip",
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-createItemFunction/Resource",
+        "aws:asset:path": "asset.fec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01d.zip",
         "aws:asset:property": "Code"
       }
     },
-    "updateItemFunctionServiceRole40035396": {
+    "jvmupdateItemFunctionServiceRoleE12B50B4": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -547,10 +547,10 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/updateItemFunction/ServiceRole/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-updateItemFunction/ServiceRole/Resource"
       }
     },
-    "updateItemFunctionServiceRoleDefaultPolicy6A793729": {
+    "jvmupdateItemFunctionServiceRoleDefaultPolicyBD316339": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -581,7 +581,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "items07D08F4B",
+                    "jvmitems29A1232E",
                     "Arn"
                   ]
                 },
@@ -593,23 +593,23 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "updateItemFunctionServiceRoleDefaultPolicy6A793729",
+        "PolicyName": "jvmupdateItemFunctionServiceRoleDefaultPolicyBD316339",
         "Roles": [
           {
-            "Ref": "updateItemFunctionServiceRole40035396"
+            "Ref": "jvmupdateItemFunctionServiceRoleE12B50B4"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/updateItemFunction/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-updateItemFunction/ServiceRole/DefaultPolicy/Resource"
       }
     },
-    "updateItemFunction59415205": {
+    "jvmupdateItemFunctionF7C11E7B": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParametersf2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257S3Bucket0E28A877"
+            "Ref": "AssetParameters8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6S3Bucket7273D1C9"
           },
           "S3Key": {
             "Fn::Join": [
@@ -622,7 +622,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersf2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257S3VersionKey15238EEE"
+                          "Ref": "AssetParameters8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6S3VersionKey001049E2"
                         }
                       ]
                     }
@@ -635,7 +635,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParametersf2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257S3VersionKey15238EEE"
+                          "Ref": "AssetParameters8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6S3VersionKey001049E2"
                         }
                       ]
                     }
@@ -647,15 +647,15 @@
         },
         "Role": {
           "Fn::GetAtt": [
-            "updateItemFunctionServiceRole40035396",
+            "jvmupdateItemFunctionServiceRoleE12B50B4",
             "Arn"
           ]
         },
-        "Description": "Built on 2021-08-18",
+        "Description": "Built on 2021-08-18T20:52:23.229946700",
         "Environment": {
           "Variables": {
             "TABLE_NAME": {
-              "Ref": "items07D08F4B"
+              "Ref": "jvmitems29A1232E"
             },
             "PRIMARY_KEY": "itemId",
             "DISABLE_SIGNAL_HANDLERS": "true"
@@ -670,16 +670,16 @@
         }
       },
       "DependsOn": [
-        "updateItemFunctionServiceRoleDefaultPolicy6A793729",
-        "updateItemFunctionServiceRole40035396"
+        "jvmupdateItemFunctionServiceRoleDefaultPolicyBD316339",
+        "jvmupdateItemFunctionServiceRoleE12B50B4"
       ],
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/updateItemFunction/Resource",
-        "aws:asset:path": "asset.f2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257.zip",
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-updateItemFunction/Resource",
+        "aws:asset:path": "asset.8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6.zip",
         "aws:asset:property": "Code"
       }
     },
-    "deleteItemFunctionServiceRole5C201FCC": {
+    "jvmdeleteItemFunctionServiceRoleEF110AE8": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -710,10 +710,10 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/deleteItemFunction/ServiceRole/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-deleteItemFunction/ServiceRole/Resource"
       }
     },
-    "deleteItemFunctionServiceRoleDefaultPolicyDCE46F14": {
+    "jvmdeleteItemFunctionServiceRoleDefaultPolicyB8253221": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -744,7 +744,7 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "items07D08F4B",
+                    "jvmitems29A1232E",
                     "Arn"
                   ]
                 },
@@ -756,23 +756,23 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "deleteItemFunctionServiceRoleDefaultPolicyDCE46F14",
+        "PolicyName": "jvmdeleteItemFunctionServiceRoleDefaultPolicyB8253221",
         "Roles": [
           {
-            "Ref": "deleteItemFunctionServiceRole5C201FCC"
+            "Ref": "jvmdeleteItemFunctionServiceRoleEF110AE8"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/deleteItemFunction/ServiceRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-deleteItemFunction/ServiceRole/DefaultPolicy/Resource"
       }
     },
-    "deleteItemFunction2918B1B0": {
+    "jvmdeleteItemFunction8C27E1A3": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
-            "Ref": "AssetParameters530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3S3Bucket78D0F1A1"
+            "Ref": "AssetParameters589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17S3Bucket1E76FBE8"
           },
           "S3Key": {
             "Fn::Join": [
@@ -785,7 +785,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3S3VersionKeyABFACED2"
+                          "Ref": "AssetParameters589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17S3VersionKeyACBD6F54"
                         }
                       ]
                     }
@@ -798,7 +798,7 @@
                       "Fn::Split": [
                         "||",
                         {
-                          "Ref": "AssetParameters530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3S3VersionKeyABFACED2"
+                          "Ref": "AssetParameters589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17S3VersionKeyACBD6F54"
                         }
                       ]
                     }
@@ -810,15 +810,15 @@
         },
         "Role": {
           "Fn::GetAtt": [
-            "deleteItemFunctionServiceRole5C201FCC",
+            "jvmdeleteItemFunctionServiceRoleEF110AE8",
             "Arn"
           ]
         },
-        "Description": "Built on 2021-08-18",
+        "Description": "Built on 2021-08-18T20:52:23.318943800",
         "Environment": {
           "Variables": {
             "TABLE_NAME": {
-              "Ref": "items07D08F4B"
+              "Ref": "jvmitems29A1232E"
             },
             "PRIMARY_KEY": "itemId",
             "DISABLE_SIGNAL_HANDLERS": "true"
@@ -833,25 +833,25 @@
         }
       },
       "DependsOn": [
-        "deleteItemFunctionServiceRoleDefaultPolicyDCE46F14",
-        "deleteItemFunctionServiceRole5C201FCC"
+        "jvmdeleteItemFunctionServiceRoleDefaultPolicyB8253221",
+        "jvmdeleteItemFunctionServiceRoleEF110AE8"
       ],
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/deleteItemFunction/Resource",
-        "aws:asset:path": "asset.530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3.zip",
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-deleteItemFunction/Resource",
+        "aws:asset:path": "asset.589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17.zip",
         "aws:asset:property": "Code"
       }
     },
-    "itemsApi28111E1C": {
+    "jvmitemsApi79B9DB38": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
         "Name": "Items Service"
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Resource"
       }
     },
-    "itemsApiCloudWatchRoleB5C7B431": {
+    "jvmitemsApiCloudWatchRole095278DB": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -882,89 +882,89 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/CloudWatchRole/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/CloudWatchRole/Resource"
       }
     },
-    "itemsApiAccount591BF3E1": {
+    "jvmitemsApiAccountB7A479B6": {
       "Type": "AWS::ApiGateway::Account",
       "Properties": {
         "CloudWatchRoleArn": {
           "Fn::GetAtt": [
-            "itemsApiCloudWatchRoleB5C7B431",
+            "jvmitemsApiCloudWatchRole095278DB",
             "Arn"
           ]
         }
       },
       "DependsOn": [
-        "itemsApi28111E1C"
+        "jvmitemsApi79B9DB38"
       ],
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Account"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Account"
       }
     },
-    "itemsApiDeploymentFEC31BD0c6f17f806dc94be5ec60ec3f93f97425": {
+    "jvmitemsApiDeploymentA3819E07993d73519b25574c6afec1de6a55828b": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "Description": "Automatically created by the RestApi construct"
       },
       "DependsOn": [
-        "itemsApiitemsidDELETE21550005",
-        "itemsApiitemsidGET38A333A8",
-        "itemsApiitemsidOPTIONS62BD91D0",
-        "itemsApiitemsidPATCH0548CB6A",
-        "itemsApiitemsidA29927C2",
-        "itemsApiitemsGET59B0F78A",
-        "itemsApiitemsOPTIONSB46B4D53",
-        "itemsApiitemsPOSTDD3E83D0",
-        "itemsApiitems9015DBED"
+        "jvmitemsApiitemsidDELETE2B9C2750",
+        "jvmitemsApiitemsidGET7736A26E",
+        "jvmitemsApiitemsidOPTIONSBFB75664",
+        "jvmitemsApiitemsidPATCH51E22340",
+        "jvmitemsApiitemsid6FEB9D03",
+        "jvmitemsApiitemsGETAB0CB71A",
+        "jvmitemsApiitemsOPTIONS12CC3EEB",
+        "jvmitemsApiitemsPOST52076AF5",
+        "jvmitemsApiitems3EE84890"
       ],
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Deployment/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Deployment/Resource"
       }
     },
-    "itemsApiDeploymentStageprodE77B897D": {
+    "jvmitemsApiDeploymentStageprodB0DD930E": {
       "Type": "AWS::ApiGateway::Stage",
       "Properties": {
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "DeploymentId": {
-          "Ref": "itemsApiDeploymentFEC31BD0c6f17f806dc94be5ec60ec3f93f97425"
+          "Ref": "jvmitemsApiDeploymentA3819E07993d73519b25574c6afec1de6a55828b"
         },
         "StageName": "prod"
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/DeploymentStage.prod/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/DeploymentStage.prod/Resource"
       }
     },
-    "itemsApiitems9015DBED": {
+    "jvmitemsApiitems3EE84890": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
         "ParentId": {
           "Fn::GetAtt": [
-            "itemsApi28111E1C",
+            "jvmitemsApi79B9DB38",
             "RootResourceId"
           ]
         },
         "PathPart": "items",
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/Resource"
       }
     },
-    "itemsApiitemsGETApiPermissioncdkcorslambdacruddynamodbexampleitemsApiBC9B8415GETitems4B80D3BC": {
+    "jvmitemsApiitemsGETApiPermissioncdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083GETitemsD51A0866": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "getAllItemsFunction0B7A913E",
+            "jvmgetAllItemsFunction42B2C091",
             "Arn"
           ]
         },
@@ -987,11 +987,11 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/",
               {
-                "Ref": "itemsApiDeploymentStageprodE77B897D"
+                "Ref": "jvmitemsApiDeploymentStageprodB0DD930E"
               },
               "/GET/items"
             ]
@@ -999,16 +999,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/GET/ApiPermission.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.GET..items"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/GET/ApiPermission.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.GET..items"
       }
     },
-    "itemsApiitemsGETApiPermissionTestcdkcorslambdacruddynamodbexampleitemsApiBC9B8415GETitems1AB2C61A": {
+    "jvmitemsApiitemsGETApiPermissionTestcdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083GETitemsB78F6CA5": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "getAllItemsFunction0B7A913E",
+            "jvmgetAllItemsFunction42B2C091",
             "Arn"
           ]
         },
@@ -1031,7 +1031,7 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/test-invoke-stage/GET/items"
             ]
@@ -1039,18 +1039,18 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/GET/ApiPermission.Test.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.GET..items"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/GET/ApiPermission.Test.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.GET..items"
       }
     },
-    "itemsApiitemsGET59B0F78A": {
+    "jvmitemsApiitemsGETAB0CB71A": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "GET",
         "ResourceId": {
-          "Ref": "itemsApiitems9015DBED"
+          "Ref": "jvmitemsApiitems3EE84890"
         },
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "AuthorizationType": "NONE",
         "Integration": {
@@ -1071,7 +1071,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "getAllItemsFunction0B7A913E",
+                    "jvmgetAllItemsFunction42B2C091",
                     "Arn"
                   ]
                 },
@@ -1082,16 +1082,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/GET/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/GET/Resource"
       }
     },
-    "itemsApiitemsPOSTApiPermissioncdkcorslambdacruddynamodbexampleitemsApiBC9B8415POSTitems1A091488": {
+    "jvmitemsApiitemsPOSTApiPermissioncdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083POSTitems82E10EAA": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "createItemFunction8D47E48A",
+            "jvmcreateItemFunction67ACB2B7",
             "Arn"
           ]
         },
@@ -1114,11 +1114,11 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/",
               {
-                "Ref": "itemsApiDeploymentStageprodE77B897D"
+                "Ref": "jvmitemsApiDeploymentStageprodB0DD930E"
               },
               "/POST/items"
             ]
@@ -1126,16 +1126,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/POST/ApiPermission.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.POST..items"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/POST/ApiPermission.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.POST..items"
       }
     },
-    "itemsApiitemsPOSTApiPermissionTestcdkcorslambdacruddynamodbexampleitemsApiBC9B8415POSTitemsED19CE90": {
+    "jvmitemsApiitemsPOSTApiPermissionTestcdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083POSTitems38B3E272": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "createItemFunction8D47E48A",
+            "jvmcreateItemFunction67ACB2B7",
             "Arn"
           ]
         },
@@ -1158,7 +1158,7 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/test-invoke-stage/POST/items"
             ]
@@ -1166,18 +1166,18 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/POST/ApiPermission.Test.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.POST..items"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/POST/ApiPermission.Test.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.POST..items"
       }
     },
-    "itemsApiitemsPOSTDD3E83D0": {
+    "jvmitemsApiitemsPOST52076AF5": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "POST",
         "ResourceId": {
-          "Ref": "itemsApiitems9015DBED"
+          "Ref": "jvmitemsApiitems3EE84890"
         },
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "AuthorizationType": "NONE",
         "Integration": {
@@ -1198,7 +1198,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "createItemFunction8D47E48A",
+                    "jvmcreateItemFunction67ACB2B7",
                     "Arn"
                   ]
                 },
@@ -1209,18 +1209,18 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/POST/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/POST/Resource"
       }
     },
-    "itemsApiitemsOPTIONSB46B4D53": {
+    "jvmitemsApiitemsOPTIONS12CC3EEB": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "OPTIONS",
         "ResourceId": {
-          "Ref": "itemsApiitems9015DBED"
+          "Ref": "jvmitemsApiitems3EE84890"
         },
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "AuthorizationType": "NONE",
         "Integration": {
@@ -1254,31 +1254,31 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/OPTIONS/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/OPTIONS/Resource"
       }
     },
-    "itemsApiitemsidA29927C2": {
+    "jvmitemsApiitemsid6FEB9D03": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
         "ParentId": {
-          "Ref": "itemsApiitems9015DBED"
+          "Ref": "jvmitemsApiitems3EE84890"
         },
         "PathPart": "{id}",
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/Resource"
       }
     },
-    "itemsApiitemsidGETApiPermissioncdkcorslambdacruddynamodbexampleitemsApiBC9B8415GETitemsid1F950844": {
+    "jvmitemsApiitemsidGETApiPermissioncdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083GETitemsidAD66F576": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "getOneItemFunctionE3257B22",
+            "jvmgetOneItemFunction6F309A36",
             "Arn"
           ]
         },
@@ -1301,11 +1301,11 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/",
               {
-                "Ref": "itemsApiDeploymentStageprodE77B897D"
+                "Ref": "jvmitemsApiDeploymentStageprodB0DD930E"
               },
               "/GET/items/*"
             ]
@@ -1313,16 +1313,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/GET/ApiPermission.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.GET..items.{id}"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/GET/ApiPermission.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.GET..items.{id}"
       }
     },
-    "itemsApiitemsidGETApiPermissionTestcdkcorslambdacruddynamodbexampleitemsApiBC9B8415GETitemsid7C73FB50": {
+    "jvmitemsApiitemsidGETApiPermissionTestcdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083GETitemsid62F7EBE9": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "getOneItemFunctionE3257B22",
+            "jvmgetOneItemFunction6F309A36",
             "Arn"
           ]
         },
@@ -1345,7 +1345,7 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/test-invoke-stage/GET/items/*"
             ]
@@ -1353,18 +1353,18 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/GET/ApiPermission.Test.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.GET..items.{id}"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/GET/ApiPermission.Test.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.GET..items.{id}"
       }
     },
-    "itemsApiitemsidGET38A333A8": {
+    "jvmitemsApiitemsidGET7736A26E": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "GET",
         "ResourceId": {
-          "Ref": "itemsApiitemsidA29927C2"
+          "Ref": "jvmitemsApiitemsid6FEB9D03"
         },
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "AuthorizationType": "NONE",
         "Integration": {
@@ -1385,7 +1385,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "getOneItemFunctionE3257B22",
+                    "jvmgetOneItemFunction6F309A36",
                     "Arn"
                   ]
                 },
@@ -1396,16 +1396,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/GET/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/GET/Resource"
       }
     },
-    "itemsApiitemsidPATCHApiPermissioncdkcorslambdacruddynamodbexampleitemsApiBC9B8415PATCHitemsidDEC2AA76": {
+    "jvmitemsApiitemsidPATCHApiPermissioncdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083PATCHitemsidE004FC85": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "updateItemFunction59415205",
+            "jvmupdateItemFunctionF7C11E7B",
             "Arn"
           ]
         },
@@ -1428,11 +1428,11 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/",
               {
-                "Ref": "itemsApiDeploymentStageprodE77B897D"
+                "Ref": "jvmitemsApiDeploymentStageprodB0DD930E"
               },
               "/PATCH/items/*"
             ]
@@ -1440,16 +1440,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/PATCH/ApiPermission.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.PATCH..items.{id}"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/PATCH/ApiPermission.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.PATCH..items.{id}"
       }
     },
-    "itemsApiitemsidPATCHApiPermissionTestcdkcorslambdacruddynamodbexampleitemsApiBC9B8415PATCHitemsidE9DF0BEE": {
+    "jvmitemsApiitemsidPATCHApiPermissionTestcdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083PATCHitemsidAD8F0BBD": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "updateItemFunction59415205",
+            "jvmupdateItemFunctionF7C11E7B",
             "Arn"
           ]
         },
@@ -1472,7 +1472,7 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/test-invoke-stage/PATCH/items/*"
             ]
@@ -1480,18 +1480,18 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/PATCH/ApiPermission.Test.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.PATCH..items.{id}"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/PATCH/ApiPermission.Test.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.PATCH..items.{id}"
       }
     },
-    "itemsApiitemsidPATCH0548CB6A": {
+    "jvmitemsApiitemsidPATCH51E22340": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "PATCH",
         "ResourceId": {
-          "Ref": "itemsApiitemsidA29927C2"
+          "Ref": "jvmitemsApiitemsid6FEB9D03"
         },
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "AuthorizationType": "NONE",
         "Integration": {
@@ -1512,7 +1512,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "updateItemFunction59415205",
+                    "jvmupdateItemFunctionF7C11E7B",
                     "Arn"
                   ]
                 },
@@ -1523,16 +1523,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/PATCH/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/PATCH/Resource"
       }
     },
-    "itemsApiitemsidDELETEApiPermissioncdkcorslambdacruddynamodbexampleitemsApiBC9B8415DELETEitemsidD1FAAE14": {
+    "jvmitemsApiitemsidDELETEApiPermissioncdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083DELETEitemsid04F7BDB8": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "deleteItemFunction2918B1B0",
+            "jvmdeleteItemFunction8C27E1A3",
             "Arn"
           ]
         },
@@ -1555,11 +1555,11 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/",
               {
-                "Ref": "itemsApiDeploymentStageprodE77B897D"
+                "Ref": "jvmitemsApiDeploymentStageprodB0DD930E"
               },
               "/DELETE/items/*"
             ]
@@ -1567,16 +1567,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/DELETE/ApiPermission.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.DELETE..items.{id}"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/DELETE/ApiPermission.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.DELETE..items.{id}"
       }
     },
-    "itemsApiitemsidDELETEApiPermissionTestcdkcorslambdacruddynamodbexampleitemsApiBC9B8415DELETEitemsidB81F3A5C": {
+    "jvmitemsApiitemsidDELETEApiPermissionTestcdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083DELETEitemsid1DA1B35D": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "deleteItemFunction2918B1B0",
+            "jvmdeleteItemFunction8C27E1A3",
             "Arn"
           ]
         },
@@ -1599,7 +1599,7 @@
               },
               ":",
               {
-                "Ref": "itemsApi28111E1C"
+                "Ref": "jvmitemsApi79B9DB38"
               },
               "/test-invoke-stage/DELETE/items/*"
             ]
@@ -1607,18 +1607,18 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/DELETE/ApiPermission.Test.cdkcorslambdacruddynamodbexampleitemsApiBC9B8415.DELETE..items.{id}"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/DELETE/ApiPermission.Test.cdkcorslambdacruddynamodbquarkusjvmjvmitemsApi0DA6E083.DELETE..items.{id}"
       }
     },
-    "itemsApiitemsidDELETE21550005": {
+    "jvmitemsApiitemsidDELETE2B9C2750": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "DELETE",
         "ResourceId": {
-          "Ref": "itemsApiitemsidA29927C2"
+          "Ref": "jvmitemsApiitemsid6FEB9D03"
         },
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "AuthorizationType": "NONE",
         "Integration": {
@@ -1639,7 +1639,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "deleteItemFunction2918B1B0",
+                    "jvmdeleteItemFunction8C27E1A3",
                     "Arn"
                   ]
                 },
@@ -1650,18 +1650,18 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/DELETE/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/DELETE/Resource"
       }
     },
-    "itemsApiitemsidOPTIONS62BD91D0": {
+    "jvmitemsApiitemsidOPTIONSBFB75664": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "OPTIONS",
         "ResourceId": {
-          "Ref": "itemsApiitemsidA29927C2"
+          "Ref": "jvmitemsApiitemsid6FEB9D03"
         },
         "RestApiId": {
-          "Ref": "itemsApi28111E1C"
+          "Ref": "jvmitemsApi79B9DB38"
         },
         "AuthorizationType": "NONE",
         "Integration": {
@@ -1695,7 +1695,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/itemsApi/Default/items/{id}/OPTIONS/Resource"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/jvm-itemsApi/Default/items/{id}/OPTIONS/Resource"
       }
     },
     "CDKMetadata": {
@@ -1704,82 +1704,82 @@
         "Analytics": "v2:deflate64:H4sIAAAAAAAACk2QyU7DMBCGn6V3x63FhSNpEQckRBR4gYk9BJPYjrxQRZbfHduhVU7zzfbPwihjj/R0eIKra7iYjpEbizR+eOAT6dGZYDmS1jn0OTZKPZKL0c7bwD25fOkOLCj0aIvzHvwSavjemTnXC+ml0YmUKVGsGpQRA42fMMy1pEIiM6hBAI0vQfPSUFJ77tAq6VyVkqBo7M3WX21nZsnXWlcpEffQQNnc0XpA9uk58An9GRwSWOQIHq+wZiF0vl3k/+o3bDk3QXvyjMtsVoW63rbzykvqAhvcrq7y+xfc+Q39txEltFFKibzCLxwZoyfKDj9OysbmmVIh7Tf7B/argNikAQAA"
       },
       "Metadata": {
-        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-example/CDKMetadata/Default"
+        "aws:cdk:path": "cdk-cors-lambda-crud-dynamodb-quarkus-jvm/CDKMetadata/Default"
       },
       "Condition": "CDKMetadataAvailable"
     }
   },
   "Parameters": {
-    "AssetParameters15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364cS3Bucket31260450": {
+    "AssetParameters8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21S3Bucket99647083": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364c\""
+      "Description": "S3 bucket for asset \"8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21\""
     },
-    "AssetParameters15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364cS3VersionKey6E77E647": {
+    "AssetParameters8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21S3VersionKeyAC1EE540": {
       "Type": "String",
-      "Description": "S3 key for asset version \"15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364c\""
+      "Description": "S3 key for asset version \"8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21\""
     },
-    "AssetParameters15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364cArtifactHashF07A36CC": {
+    "AssetParameters8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21ArtifactHash1A54029D": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"15509b14f67b1e0cbfd72d11b645c49002e21b7018be9412ffabd0cb2d0a364c\""
+      "Description": "Artifact hash for asset \"8ca4894d193df31b8f315c83147289709fb5f919aeee89b8f44d8a46e769fd21\""
     },
-    "AssetParameters508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416S3BucketD536487B": {
+    "AssetParameters67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9dS3Bucket0A60305A": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416\""
+      "Description": "S3 bucket for asset \"67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9d\""
     },
-    "AssetParameters508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416S3VersionKeyB23E2CA4": {
+    "AssetParameters67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9dS3VersionKey2C7A217F": {
       "Type": "String",
-      "Description": "S3 key for asset version \"508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416\""
+      "Description": "S3 key for asset version \"67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9d\""
     },
-    "AssetParameters508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416ArtifactHash117C709D": {
+    "AssetParameters67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9dArtifactHashC653B2EA": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"508b83e7c9a1cf892e73ff872966f3c73e8b240e5c24ad5e2b3801c97b5ed416\""
+      "Description": "Artifact hash for asset \"67ee27f402905ef674ade63648ecef920d36e7aae7ab13e0de0aa7146dbacf9d\""
     },
-    "AssetParameters34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31S3Bucket491B0457": {
+    "AssetParametersfec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01dS3BucketA9C87710": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31\""
+      "Description": "S3 bucket for asset \"fec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01d\""
     },
-    "AssetParameters34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31S3VersionKey81B9E3E9": {
+    "AssetParametersfec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01dS3VersionKey0E41AE99": {
       "Type": "String",
-      "Description": "S3 key for asset version \"34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31\""
+      "Description": "S3 key for asset version \"fec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01d\""
     },
-    "AssetParameters34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31ArtifactHashAA78FBE7": {
+    "AssetParametersfec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01dArtifactHashFFED0793": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"34ed456da6e3ba431c0d7d376b8f4183e14ab2dd9b60fb529d6522a6143c0c31\""
+      "Description": "Artifact hash for asset \"fec9444e198782ba28bb0897f13ba9a95802b8efb5cacb6dda825303174ce01d\""
     },
-    "AssetParametersf2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257S3Bucket0E28A877": {
+    "AssetParameters8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6S3Bucket7273D1C9": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"f2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257\""
+      "Description": "S3 bucket for asset \"8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6\""
     },
-    "AssetParametersf2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257S3VersionKey15238EEE": {
+    "AssetParameters8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6S3VersionKey001049E2": {
       "Type": "String",
-      "Description": "S3 key for asset version \"f2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257\""
+      "Description": "S3 key for asset version \"8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6\""
     },
-    "AssetParametersf2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257ArtifactHash74FFE98D": {
+    "AssetParameters8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6ArtifactHash05A71A44": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"f2f4c2ce091ea162dae24b6f19be9e63672eb0a73253502dbac0438834c45257\""
+      "Description": "Artifact hash for asset \"8b45e1fb9ea0d065697c47b175225dce1a9ec3d99e97ee7dd7489b4c384dd8b6\""
     },
-    "AssetParameters530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3S3Bucket78D0F1A1": {
+    "AssetParameters589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17S3Bucket1E76FBE8": {
       "Type": "String",
-      "Description": "S3 bucket for asset \"530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3\""
+      "Description": "S3 bucket for asset \"589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17\""
     },
-    "AssetParameters530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3S3VersionKeyABFACED2": {
+    "AssetParameters589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17S3VersionKeyACBD6F54": {
       "Type": "String",
-      "Description": "S3 key for asset version \"530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3\""
+      "Description": "S3 key for asset version \"589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17\""
     },
-    "AssetParameters530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3ArtifactHashAF405AEA": {
+    "AssetParameters589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17ArtifactHash906CCE33": {
       "Type": "String",
-      "Description": "Artifact hash for asset \"530579fb4e5f6bcdcb15cf10f363a5911d4dfcf2b66b45dcd45e228457b860d3\""
+      "Description": "Artifact hash for asset \"589b348640411780ed78ce73e7f240a2780a12ea501d04da8efa684c9cdf3e17\""
     }
   },
   "Outputs": {
-    "itemsApiEndpoint8392E274": {
+    "jvmitemsApiEndpoint4FD59B32": {
       "Value": {
         "Fn::Join": [
           "",
           [
             "https://",
             {
-              "Ref": "itemsApi28111E1C"
+              "Ref": "jvmitemsApi79B9DB38"
             },
             ".execute-api.",
             {
@@ -1791,7 +1791,7 @@
             },
             "/",
             {
-              "Ref": "itemsApiDeploymentStageprodE77B897D"
+              "Ref": "jvmitemsApiDeploymentStageprodB0DD930E"
             },
             "/"
           ]

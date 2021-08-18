@@ -25,8 +25,12 @@ import java.util.Map;
  * CorsLambdaCrudDynamodbStack CDK example for Java!
  */
 class CorsLambdaCrudDynamodbStack extends Stack {
-	public CorsLambdaCrudDynamodbStack(final Construct parent, final String name) {
+	public CorsLambdaCrudDynamodbStack(final Construct parent, final String name, final DeploymentType depType) {
 		super(parent, name);
+
+		final String prefix = depType.getValue()+"-";
+		final String tableName = prefix+"items";
+		final String apiName = prefix+"itemsApi";
 
 		TableProps tableProps;
 		Attribute partitionKey = Attribute.builder()
@@ -34,14 +38,14 @@ class CorsLambdaCrudDynamodbStack extends Stack {
 				.type(AttributeType.STRING)
 				.build();
 		tableProps = TableProps.builder()
-				.tableName("items")
+				.tableName(tableName)
 				.partitionKey(partitionKey)
 				// The default removal policy is RETAIN, which means that cdk destroy will not attempt to delete
 				// the new table, and it will remain in your account until manually deleted. By setting the policy to
 				// DESTROY, cdk destroy will delete the table (even if it has data in it)
 				.removalPolicy(RemovalPolicy.DESTROY)
 				.build();
-		Table dynamodbTable = new Table(this, "items", tableProps);
+		Table dynamodbTable = new Table(this, tableName, tableProps);
 
 
 		Map<String, String> lambdaEnvMap = new HashMap<>();
@@ -50,16 +54,31 @@ class CorsLambdaCrudDynamodbStack extends Stack {
 		lambdaEnvMap.put("DISABLE_SIGNAL_HANDLERS", "true");
 
 
-		Function getOneItemFunction = new Function(this, "getOneItemFunction",
-				getLambdaFunctionProps(lambdaEnvMap, "software.amazon.awscdk.examples.lambda.GetOneItem", "./lambda-get/target/function.zip"));
-		Function getAllItemsFunction = new Function(this, "getAllItemsFunction",
-				getLambdaFunctionProps(lambdaEnvMap, "software.amazon.awscdk.examples.lambda.GetAllItems", "./lambda/target/function.zip"));
-		Function createItemFunction = new Function(this, "createItemFunction",
-				getLambdaFunctionProps(lambdaEnvMap, "software.amazon.awscdk.examples.lambda.CreateItem", "./lambda-add/target/function.zip"));
-		Function updateItemFunction = new Function(this, "updateItemFunction",
-				getLambdaFunctionProps(lambdaEnvMap, "software.amazon.awscdk.examples.lambda.UpdateItem", "./lambda-update/target/function.zip"));
-		Function deleteItemFunction = new Function(this, "deleteItemFunction",
-				getLambdaFunctionProps(lambdaEnvMap, "software.amazon.awscdk.examples.lambda.DeleteItem", "./lambda-delete/target/function.zip"));
+		Function getOneItemFunction = new Function(this, prefix+"getOneItemFunction",
+				getLambdaFunctionProps(lambdaEnvMap,
+						"software.amazon.awscdk.examples.lambda.GetOneItem",
+						"./lambda-get/target/function.zip",
+						depType));
+		Function getAllItemsFunction = new Function(this, prefix+"getAllItemsFunction",
+				getLambdaFunctionProps(lambdaEnvMap,
+						"software.amazon.awscdk.examples.lambda.GetAllItems",
+						"./lambda/target/function.zip",
+						depType));
+		Function createItemFunction = new Function(this, prefix+"createItemFunction",
+				getLambdaFunctionProps(lambdaEnvMap,
+						"software.amazon.awscdk.examples.lambda.CreateItem",
+						"./lambda-add/target/function.zip",
+						depType));
+		Function updateItemFunction = new Function(this, prefix+"updateItemFunction",
+				getLambdaFunctionProps(lambdaEnvMap,
+						"software.amazon.awscdk.examples.lambda.UpdateItem",
+						"./lambda-update/target/function.zip",
+						depType));
+		Function deleteItemFunction = new Function(this, prefix+"deleteItemFunction",
+				getLambdaFunctionProps(lambdaEnvMap,
+						"software.amazon.awscdk.examples.lambda.DeleteItem",
+						"./lambda-delete/target/function.zip",
+						depType));
 
 
 		dynamodbTable.grantReadWriteData(getOneItemFunction);
@@ -68,7 +87,7 @@ class CorsLambdaCrudDynamodbStack extends Stack {
 		dynamodbTable.grantReadWriteData(updateItemFunction);
 		dynamodbTable.grantReadWriteData(deleteItemFunction);
 
-		RestApi api = new RestApi(this, "itemsApi",
+		RestApi api = new RestApi(this, apiName,
 				RestApiProps.builder().restApiName("Items Service").build());
 
 		IResource items = api.getRoot().addResource("items");
@@ -132,17 +151,18 @@ class CorsLambdaCrudDynamodbStack extends Stack {
 		item.addMethod("OPTIONS", methodIntegration, methodOptions);
 	}
 
-	private FunctionProps getLambdaFunctionProps(Map<String, String> lambdaEnvMap, String handler, String assetPath) {
+	private FunctionProps getLambdaFunctionProps(Map<String, String> lambdaEnvMap,
+												 String handler,
+												 String assetPath,
+												 DeploymentType deploymentType) {
 		return FunctionProps.builder()
 				.code(Code.fromAsset(assetPath))
-				//.handler(handler)
-				//.runtime(Runtime.JAVA_11)
-				.handler("not.used.in.provided.runtime")
-				.runtime(Runtime.PROVIDED)
+				.handler(DeploymentType.NATIVE == deploymentType ? "not.used.in.provided.runtime" : handler)
+				.runtime(DeploymentType.NATIVE == deploymentType ? Runtime.PROVIDED : Runtime.JAVA_11)
 				.environment(lambdaEnvMap)
 				.timeout(Duration.seconds(30))
 				.memorySize(1024)
-				.description("Built on " + java.time.LocalDate.now())
+				.description("Built on " + java.time.LocalDateTime.now())
 				.currentVersionOptions(VersionOptions.builder().build())
 				.tracing(Tracing.ACTIVE)
 				.build();
